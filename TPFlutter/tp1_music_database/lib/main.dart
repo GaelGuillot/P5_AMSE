@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => MyAppState(),
       child: MaterialApp(
-        title: 'Namer App',
+        title: 'Database App',
         theme: ThemeData(
           useMaterial3: true,
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
@@ -81,7 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
         page = FavoritesPage();
         break;
       case 2:
-        page = Placeholder();
+        page = AboutScreen();
         break;
       default:
         throw UnimplementedError('no widget for $selectedIndex');
@@ -215,6 +215,37 @@ class GeneratorPage extends StatelessWidget {
     );
   }
 }
+
+class AboutScreen extends StatefulWidget {
+  const AboutScreen({super.key});
+
+  @override
+  State<AboutScreen> createState() => _AboutScreenState();
+}
+
+class _AboutScreenState extends State<AboutScreen> {
+  @override
+  Widget build(BuildContext context) => Scaffold(
+        appBar: AppBar(
+          title: const Text('About'),
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                "Application crée par Gaël Guillot",
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+              const Text(
+                "Projet n°1 de P5: AMSE",
+              ),
+            ],
+          ),
+        ),
+      );
+}
+
 
 class BigCard extends StatelessWidget {
   const BigCard({
