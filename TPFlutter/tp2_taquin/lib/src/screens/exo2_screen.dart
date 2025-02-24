@@ -1,37 +1,16 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'TP2',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Rotate/Resize image'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+class Exo2Screen extends StatefulWidget {
+  const Exo2Screen({super.key, required this.title});
 
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<Exo2Screen> createState() => _Exo2ScreenState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _Exo2ScreenState extends State<Exo2Screen> {
   double _sliderX = 0.5;
   double _sliderZ = 0.5;
   double _sliderS = 0.5;
