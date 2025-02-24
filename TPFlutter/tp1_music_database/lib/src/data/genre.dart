@@ -1,0 +1,1 @@
+enum Genre {rap, rock, pop, jazz}
