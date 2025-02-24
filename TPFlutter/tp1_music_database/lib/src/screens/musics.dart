@@ -40,8 +40,11 @@ class _MusicsScreenState extends State<MusicsScreen>
     return Scaffold(
       appBar: AppBar(
         title: const Text('Music'),
-        bottom: TabBar(
+        bottom: 
+        TabBar(
           controller: _tabController,
+          isScrollable: true,
+          tabAlignment: TabAlignment.start,
           tabs: const [
             Tab(text: 'All', icon: Icon(Icons.list)),
             Tab(text: 'Rap', icon: Icon(Icons.music_note)),

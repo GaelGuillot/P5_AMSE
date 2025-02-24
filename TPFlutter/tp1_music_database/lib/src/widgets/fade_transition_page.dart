@@ -8,7 +8,7 @@ class FadeTransitionPage<T> extends Page<T> {
   const FadeTransitionPage({
     super.key,
     required this.child,
-    this.duration = const Duration(milliseconds: 300),
+    this.duration = const Duration(milliseconds: 30),
   });
 
   @override
