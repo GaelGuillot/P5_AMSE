@@ -34,6 +34,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   double _sliderX = 0.5;
   double _sliderZ = 0.5;
+  double _sliderS = 0.5;
+  bool? _mirrorBool = false;
 
   @override
   Widget build(BuildContext context) {
@@ -46,28 +48,81 @@ class _MyHomePageState extends State<MyHomePage> {
         child: 
         Column(
           children: [
-            SafeArea(
-              child: Transform(
-                transform: Matrix4.identity()..rotateZ(_sliderZ/2*math.pi)..rotateX(_sliderX/2*math.pi),
-                child: const Image(
-                    height: 300,
-                    image: NetworkImage('https://picsum.photos/512/1024'),
+            
+            ClipRect(
+              child: Container(
+                height:300,
+                width:300,
+                child: Transform(
+                  alignment: Alignment.center,
+                  transform: Matrix4.identity()
+                  ..rotateZ(2*math.pi*_sliderZ)
+                  ..rotateX(2*math.pi*_sliderX)
+                  ..scale(2*_sliderS),
+              
+                  child: Transform.flip(
+                    flipX: _mirrorBool == true,
+                    child: const Image(
+                      height: 300,
+                      image: NetworkImage('https://picsum.photos/512/1024'),
+                    ),
                   ),
+                ),
               ),
             ),
-            Slider(value: _sliderX, onChanged: (double value) {
-              setState(() {
-                _sliderX = value;
-              });
-            }),
-            Slider(value: _sliderZ, onChanged: (double value) {
-              setState(() {
-                _sliderZ = value;
-              });
-            })
+
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text('Rotate X'),
+                Slider(value: _sliderX, onChanged: (double value) {
+                  setState(() {
+                    _sliderX = value;
+                  });
+                }),
+              ],
+            ),
+
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text('Rotate Z'),
+                Slider(value: _sliderZ, onChanged: (double value) {
+                  setState(() {
+                    _sliderZ = value;
+                  });
+                }),
+              ],
+            ),
+
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text('Scale'),
+                Slider(value: _sliderS, onChanged: (double value) {
+                  setState(() {
+                    _sliderS = value;
+                  });
+                }),
+              ],
+            ),
+
+           Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text('Mirror'),
+              Checkbox(
+                tristate: false,
+                value: _mirrorBool, 
+                onChanged: (bool? value) {
+                setState(() {
+                  _mirrorBool = value;
+                });
+              })
+           ],)
           ],
         )
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
     );
   }
 }
