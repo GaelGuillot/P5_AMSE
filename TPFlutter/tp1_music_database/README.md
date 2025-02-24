@@ -1,16 +1,38 @@
-# tp1_music_database
+# AMSE TP1: Music Database
 
-A new Flutter project.
+This flutter project, made in the context of the AMSE course for IMT Nord Europe, serves as a simple app-building exercise, in order to get used to flutter and the dart programming language. 
 
-## Getting Started
+### Objectives: 
 
-This project is a starting point for a Flutter application.
+The user must be able to: 
+- Browse a catalogue of medias seperated in different groups, and obtain detailed information on these medias
+- "Like" a media
+- Browse their "liked" medias.
 
-A few resources to get you started if this is your first Flutter project:
+For this, the app must make use of a NavBar with at least three tabs, ListView widgets, and Images. 
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Running the project
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Running the project should be as simple as cloning the github repository
+
+```bash
+git clone https://github.com/GaelGuillot/P5_AMSE.git
+```
+
+Then, navigating to the correct repository
+
+```bash
+cd P5_AMSE/TPFlutter/tp1_music_database
+```
+
+Grabbing the required flutter pub files
+
+```bash
+flutter pub get
+```
+
+And finally, running the project
+
+```bash
+flutter run
+```

@@ -8,147 +8,147 @@ final libraryInstance =
       ..addMusic(
         title: 'St. Chroma',
         artistName: 'Tyler, The Creator',
-        isPopular: false,
+        isFavorite: false,
         genre: Genre.rap,
         album: 'Chromakopia'
       )
       ..addMusic(
         title: 'Like Him',
         artistName: 'Tyler, The Creator',
-        isPopular: false,
+        isFavorite: false,
         genre: Genre.rap,
         album: 'Chromakopia'
       )
       ..addMusic(
         title: 'Reincarnated',
         artistName: 'Kendrick Lamar',
-        isPopular: false,
+        isFavorite: false,
         genre: Genre.rap,
         album: 'GNX'
       )
       ..addMusic(
         title: 'King Kunta',
         artistName: 'Kendrick Lamar',
-        isPopular: false,
+        isFavorite: false,
         genre: Genre.rap,
         album: 'To_Pimp_A_Butterfly'
       )
       ..addMusic(
         title: 'All Caps',
         artistName: 'MF DOOM',
-        isPopular: false,
+        isFavorite: false,
         genre: Genre.rap,
         album: 'Madvillainy'
       )
       ..addMusic(
         title: 'Meat Grinder',
         artistName: 'MF DOOM',
-        isPopular: false,
+        isFavorite: false,
         genre: Genre.rap,
         album: 'Madvillainy'
       )
       ..addMusic(
         title: 'Vincent',
         artistName: 'Car Seat Headrest',
-        isPopular: false,
+        isFavorite: false,
         genre: Genre.rock,
         album: 'Teens_Of_Denial'
       )
       ..addMusic(
         title: 'Fill In The Blank',
         artistName: 'Car Seat Headrest',
-        isPopular: false,
+        isFavorite: false,
         genre: Genre.rock,
         album: 'Teens_Of_Denial'
       )
       ..addMusic(
         title: 'MK Ultra',
         artistName: 'Muse',
-        isPopular: false,
+        isFavorite: false,
         genre: Genre.rock,
         album: 'The_Resistance'
       )
       ..addMusic(
         title: 'Knights of Cydonia',
         artistName: 'Muse',
-        isPopular: false,
+        isFavorite: false,
         genre: Genre.rock,
         album: 'Black_Holes_and_Revelations'
       )
       ..addMusic(
         title: 'Uprising',
         artistName: 'Muse',
-        isPopular: false,
+        isFavorite: false,
         genre: Genre.rock,
         album: 'The_Resistance'
       )
       ..addMusic(
         title: 'Only Girl',
         artistName: 'Rihanna',
-        isPopular: false,
+        isFavorite: false,
         genre: Genre.pop,
         album: 'Loud'
       )
       ..addMusic(
         title: 'Fading',
         artistName: 'Rihanna',
-        isPopular: false,
+        isFavorite: false,
         genre: Genre.pop,
         album: 'Loud'
       )
       ..addMusic(
         title: 'Cry For Me',
         artistName: 'The Weeknd',
-        isPopular: false,
+        isFavorite: false,
         genre: Genre.pop,
         album: 'Hurry_Up_Tomorrow'
       )
       ..addMusic(
         title: 'Timeless',
         artistName: 'The Weeknd',
-        isPopular: false,
+        isFavorite: false,
         genre: Genre.pop,
         album: 'Hurry_Up_Tomorrow'
       )
       ..addMusic(
         title: 'Starboy',
         artistName: 'The Weeknd',
-        isPopular: false,
+        isFavorite: false,
         genre: Genre.pop,
         album: 'Starboy'
       )
       ..addMusic(
         title: 'Focus',
         artistName: 'Shaun Martin',
-        isPopular: false,
+        isFavorite: false,
         genre: Genre.jazz,
         album: 'Focus'
       )
       ..addMusic(
         title: 'Triad',
         artistName: 'Shaun Martin',
-        isPopular: false,
+        isFavorite: false,
         genre: Genre.jazz,
         album: 'Focus'
       )
       ..addMusic(
         title: 'Fluffy',
         artistName: 'Himiko Kikuchi',
-        isPopular: false,
+        isFavorite: false,
         genre: Genre.jazz,
         album: 'Flying_Beagle'
       )
       ..addMusic(
         title: 'Flying Beagle',
         artistName: 'Himiko Kikuchi',
-        isPopular: false,
+        isFavorite: false,
         genre: Genre.jazz,
         album: 'Flying_Beagle'
       )
       ..addMusic(
         title: 'Look Your Back!',
         artistName: 'Himiko Kikuchi',
-        isPopular: false,
+        isFavorite: false,
         genre: Genre.jazz,
         album: 'Flying_Beagle'
       );
@@ -160,7 +160,7 @@ class Library {
   void addMusic({
     required String title,
     required String artistName,
-    required bool isPopular,
+    required bool isFavorite,
     required Genre genre,
     required String album,
   }) {
@@ -172,7 +172,7 @@ class Library {
         return value;
       },
     );
-    var music = Music(allMusic.length, title, isPopular, genre, artist, album);
+    var music = Music(allMusic.length, title, isFavorite, genre, artist, album);
 
     artist.musics.add(music);
     allMusic.add(music);
