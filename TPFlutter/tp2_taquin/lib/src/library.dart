@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'exercise.dart';
 import 'screens/exo2_screen.dart';
 import 'screens/exo4_screen.dart';
+import 'screens/exo5_screen.dart';
 
 class Library {
   final List<Exercise> allExercises = [];
@@ -28,4 +29,7 @@ final libraryInstance = Library()
   )
 ..addExercise(
   title: 'Exercice4', description: 'Display a tile as a cropped image', widget: Exo4Screen()
+  )
+..addExercise(
+  title: 'Exercice5', description:'Display grid', widget: Exo5Screen()
   );
