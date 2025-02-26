@@ -9,9 +9,10 @@ class Library {
 
   void addExercise({
     required String title,
+    required String description,
     required Widget widget,
   }) {
-    var exercise = Exercise(allExercises.length, title, widget);
+    var exercise = Exercise(allExercises.length, title, description, widget);
 
     allExercises.add(exercise);
   }
@@ -23,8 +24,8 @@ class Library {
   
 final libraryInstance = Library()
 ..addExercise(
-  title: 'Exercice2', widget: Exo2Screen(title: 'Rotate/Scale image')
+  title: 'Exercice2', description:'Rotate/Scale image', widget: Exo2Screen()
   )
 ..addExercise(
-  title: 'Exercice4', widget: Exo4Screen()
+  title: 'Exercice4', description: 'Display a tile as a cropped image', widget: Exo4Screen()
   );
