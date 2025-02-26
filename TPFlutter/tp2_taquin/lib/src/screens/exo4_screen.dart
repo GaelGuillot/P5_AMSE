@@ -27,6 +27,8 @@ Tile tile = new Tile(
     imageURL: 'https://picsum.photos/512', alignment: Alignment(0, 0));
 
 class Exo4Screen extends StatelessWidget {
+  final String title = 'Display a Tile as a Cropped Image';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

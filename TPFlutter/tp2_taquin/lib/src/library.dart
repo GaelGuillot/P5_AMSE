@@ -9,7 +9,7 @@ class Library {
 
   void addExercise({
     required String title,
-    required StatefulWidget widget,
+    required Widget widget,
   }) {
     var exercise = Exercise(allExercises.length, title, widget);
 
@@ -26,5 +26,5 @@ final libraryInstance = Library()
   title: 'Exercice2', widget: Exo2Screen(title: 'Rotate/Scale image')
   )
 ..addExercise(
-  title: 'Exercice4', widget: Exo4Screen(title: 'Rotate/Scale image')
+  title: 'Exercice4', widget: Exo4Screen()
   );
