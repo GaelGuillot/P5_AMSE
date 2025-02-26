@@ -26,7 +26,7 @@ class Tile {
 Tile tile = new Tile(
     imageURL: 'https://picsum.photos/512', alignment: Alignment(0, 0));
 
-class DisplayTileWidget extends StatelessWidget {
+class Exo4Screen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
