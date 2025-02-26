@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
+import 'package:tp2_taquin/src/library.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -48,7 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: 
         ListView(
           children: [
-            ListTile()
+            Text("libraryInstance.allExercises[0].title;"),
           ]
         )
       ),
