@@ -15,8 +15,8 @@ class Library {
     allExercises.add(exercise);
   }
 
-  Exercise getExercise(String id){
-    return allExercises[int.parse(id)];
+  Exercise getExercise(int id){
+    return allExercises[id];
   }
 }
   
