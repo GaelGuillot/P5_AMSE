@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
 class Exo2Screen extends StatefulWidget {
-  const Exo2Screen({super.key, required this.title});
-
-  final String title;
+  const Exo2Screen({super.key});
 
   @override
   State<Exo2Screen> createState() => _Exo2ScreenState();
@@ -25,7 +23,7 @@ class _Exo2ScreenState extends State<Exo2Screen> {
         }, 
         icon: Icon(Icons.arrow_back)),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
+        title: Text('Rotate/Scale image'),
       ),
       body: Center(
         child: 

@@ -1,3 +1,5 @@
+//import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
@@ -48,11 +50,20 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Center(
         child: 
-        ListView(
-          children: [
-            Text("libraryInstance.allExercises[0].title;"),
-          ]
-        )
+          ListView(
+            children: [
+              for (int i = 0; i < libraryInstance.allExercises.length; i++) 
+                Card(
+                  child: Column(
+                    children: [
+                      Text(libraryInstance.getExercise(i).title),
+                      Icon(Icons.hive),
+                    ],
+                  ),
+                ),
+            ],
+          )
+
       ),
     );
   }
