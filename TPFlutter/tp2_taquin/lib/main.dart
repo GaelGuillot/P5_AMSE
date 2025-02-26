@@ -53,14 +53,22 @@ class _MyHomePageState extends State<MyHomePage> {
           ListView(
             children: [
               for (int i = 0; i < libraryInstance.allExercises.length; i++) 
-                Card(
-                  child: Column(
+                ListTile(
+                  title: Column(
                     children: [
                       Text(libraryInstance.getExercise(i).title),
                       Icon(Icons.hive),
                     ],
                   ),
-                ),
+                    onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => libraryInstance.getExercise(i).widget,
+                      ),
+                    );
+                  }
+                )
             ],
           )
 
