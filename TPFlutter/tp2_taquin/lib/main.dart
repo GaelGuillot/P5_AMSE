@@ -45,30 +45,39 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: Center(
-        child: 
-          ListView(
-            children: [
-              for (int i = 0; i < libraryInstance.allExercises.length; i++) 
-                ListTile(
-                  title: Column(
-                    children: [
-                      Text(libraryInstance.getExercise(i).title),
-                      Icon(Icons.hive),
-                    ],
+      body: ListView(
+        children: [
+          for (int i = 0; i < libraryInstance.allExercises.length; i++) 
+            ListTile(
+              title: Column(
+                crossAxisAlignment: CrossAxisAlignment.start, 
+                children: [
+                  Text(
+                    libraryInstance.getExercise(i).title,
+                    style: TextStyle(
+                      fontSize: 18, 
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                    onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => libraryInstance.getExercise(i).widget,
-                      ),
-                    );
-                  }
-                )
-            ],
-          )
-
+                  Text(
+                    libraryInstance.getExercise(i).description,
+                    style: TextStyle(
+                      fontSize: 14, 
+                      color: Colors.grey, 
+                    ),
+                  ),
+                ],
+              ),
+                onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => libraryInstance.getExercise(i).widget,
+                  ),
+                );
+              }
+            )
+        ],
       ),
     );
   }
