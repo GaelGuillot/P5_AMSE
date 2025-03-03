@@ -41,7 +41,6 @@ class _Exo6bScreenState extends State<Exo6bScreen> {
   @override
   Widget build(BuildContext context) {
     int gridSize = _calculateGridSize(_sliderSize);
-    double cellSize = 512 / gridSize;
 
     return Scaffold(
       appBar: AppBar(
