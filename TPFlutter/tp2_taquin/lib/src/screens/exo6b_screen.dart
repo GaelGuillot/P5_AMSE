@@ -8,16 +8,40 @@ class Exo6bScreen extends StatefulWidget {
 
 class _Exo6bScreenState extends State<Exo6bScreen> {
   final String title = 'Display grid';
-  double _sliderSize = 0.2;
+  double _sliderSize = 0.4;
+  List<int> grid;
+  bool hasStarted = false;
+
+  _Exo6bScreenState() : grid = List.generate(101, (index) => index);
 
   int _calculateGridSize(double sliderValue) {
-    return (sliderValue * 10).toInt() + 1; 
+    return (sliderValue * 10).toInt() + 1;
+  }
+
+  void _swapTiles(int index) {
+    int blankIndex = grid.indexOf(grid.length - 1);
+    setState(() {
+      grid[blankIndex] = grid[index];
+      grid[index] = grid.length - 1;
+    });
+  }
+
+  bool _checkAdjacent(int index) {
+    int gridSize = _calculateGridSize(_sliderSize);
+    if (index + gridSize == grid.indexOf(grid.length - 1) ||
+        index - gridSize == grid.indexOf(grid.length - 1) ||
+        (index + 1) % gridSize != 0 && index + 1 == grid.indexOf(grid.length - 1) ||
+        index % gridSize != 0 && index - 1 == grid.indexOf(grid.length - 1)) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     int gridSize = _calculateGridSize(_sliderSize);
-    // double cellSize = 512 / gridSize;
+    double cellSize = 512 / gridSize;
 
     return Scaffold(
       appBar: AppBar(
@@ -37,41 +61,29 @@ class _Exo6bScreenState extends State<Exo6bScreen> {
                   mainAxisSpacing: 1,
                   children: [
                     for (int index = 0; index < gridSize * gridSize; index++)
-                      if (index == gridSize * gridSize - 1)
-                        Container(
-                          color: Colors.white, // Blank tile
-                        )
-                      else
-                        Tile(
-                          imageURL: 'https://picsum.photos/512',
-                          alignment: Alignment(
-                            -1 + 2 * (index % gridSize) / (gridSize - 1),
-                            -1 + 2 * (index ~/ gridSize) / (gridSize - 1),
-                          ),
-                          widthFactor: 1 / gridSize,
-                          heightFactor: 1 / gridSize,
-                        ).croppedImageTile(),
+                        GestureDetector(
+                          onTap: () {
+                            if (!hasStarted) {
+                              _swapTiles(gridSize * gridSize - gridSize);
+                              hasStarted = true;
+                            }
+                            else if (_checkAdjacent(index)) {
+                              _swapTiles(index);
+                            }
+                          },
+                          child: Tile(
+                            imageURL: 'https://picsum.photos/512',
+                            alignment: Alignment(
+                              -1 + 2 * (grid[index] % gridSize) / (gridSize - 1),
+                              -1 + 2 * (grid[index] ~/ gridSize) / (gridSize - 1),
+                            ),
+                            widthFactor: 1 / gridSize,
+                            heightFactor: 1 / gridSize,
+                          ).croppedImageTile(),
+                        ),
                   ],
                 ),
               ),
-            ),
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const Text('Size: '),
-                Slider(
-                  value: _sliderSize,
-                  min: 0.2,
-                  max: 0.9,
-                  divisions: 7,
-                  label: '${_calculateGridSize(_sliderSize)}',
-                  onChanged: (double value) {
-                    setState(() {
-                      _sliderSize = value;
-                    });
-                  },
-                ),
-              ],
             ),
           ],
         ),
