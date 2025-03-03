@@ -21,8 +21,12 @@ class _Exo5ScreenState extends State<Exo5Screen> {
 
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(onPressed: (){
+          Navigator.pop(context);
+        }, 
+        icon: Icon(Icons.arrow_back)),
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text('Display grid'),
-        centerTitle: true,
       ),
       body: Center(
         child: Column(

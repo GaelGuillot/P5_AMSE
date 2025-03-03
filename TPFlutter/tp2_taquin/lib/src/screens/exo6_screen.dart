@@ -57,8 +57,12 @@ class _Exo6ScreenState extends State<Exo6Screen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Moving Tiles'),
-        centerTitle: true,
+        leading: IconButton(onPressed: (){
+          Navigator.pop(context);
+        }, 
+        icon: Icon(Icons.arrow_back)),
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title: Text('Swap two Tiles'),
       ),
       body: Row(children: tiles),
       floatingActionButton: FloatingActionButton(

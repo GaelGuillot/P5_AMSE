@@ -44,8 +44,12 @@ class _Exo6bScreenState extends State<Exo6bScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Display grid'),
-        centerTitle: true,
+        leading: IconButton(onPressed: (){
+          Navigator.pop(context);
+        }, 
+        icon: Icon(Icons.arrow_back)),
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title: Text('Slide tiles'),
       ),
       body: Center(
         child: Column(

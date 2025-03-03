@@ -44,8 +44,12 @@ class _Exo7ScreenState extends State<Exo7Screen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Display grid'),
-        centerTitle: true,
+        leading: IconButton(onPressed: (){
+          Navigator.pop(context);
+        }, 
+        icon: Icon(Icons.arrow_back)),
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title: Text('Tile Puzzle'),
       ),
       body: Center(
         child: Column(
@@ -85,7 +89,9 @@ class _Exo7ScreenState extends State<Exo7Screen> {
               ),
             ),
             Center(
-                child: Row(
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 50.0),
+                  child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ElevatedButton(
@@ -109,8 +115,14 @@ class _Exo7ScreenState extends State<Exo7Screen> {
                   ElevatedButton(
                   onPressed: () {
                     setState(() {
-                    _swapTiles(gridSize * gridSize - gridSize);
-                      hasStarted = true;
+                      if (hasStarted){
+                      grid = List.generate(101, (index) => index);
+                      hasStarted = false;
+                      }
+                      else{
+                        _swapTiles(gridSize * gridSize - gridSize);
+                        hasStarted = true;
+                      }
                     });
                   },
                   child: Text(hasStarted?'Reset':'Start'),
@@ -139,6 +151,7 @@ class _Exo7ScreenState extends State<Exo7Screen> {
                 ],
                 ),
               ),
+            )
           ],
         ),
       ),

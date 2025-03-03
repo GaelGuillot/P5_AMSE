@@ -37,11 +37,11 @@ final libraryInstance = Library()
   title: 'Exercice 5', description:'Display grid', widget: Exo5Screen()
   )
 ..addExercise(
-  title: 'Exercice 6a', description: 'Slide tiles', widget: Exo6Screen()
+  title: 'Exercice 6a', description: 'Swap two tiles', widget: Exo6Screen()
   )
 ..addExercise(
 title: 'Exercice 6b', description: 'Slide tiles', widget: Exo6bScreen()
 )
 ..addExercise(
-  title: 'Exercice 7', description: 'Tile game', widget: Exo7Screen()
+  title: 'Exercice 7', description: 'Tile puzzle', widget: Exo7Screen()
   );

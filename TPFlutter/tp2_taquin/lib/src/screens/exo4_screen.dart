@@ -12,8 +12,12 @@ class Exo4Screen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(onPressed: (){
+          Navigator.pop(context);
+        }, 
+        icon: Icon(Icons.arrow_back)),
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text('Display a Tile as a Cropped Image'),
-        centerTitle: true,
       ),
       body: Center(
           child: Column(children: [
