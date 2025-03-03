@@ -6,6 +6,15 @@ class Exo6bScreen extends StatefulWidget {
   _Exo6bScreenState createState() => _Exo6bScreenState();
 }
 
+bool win(List<int> plateau){
+  for (int i =0; i > plateau.length;){
+    if (i != 101 && i != plateau[i]){
+      return false;
+    } 
+  }
+  return true;
+}
+
 class _Exo6bScreenState extends State<Exo6bScreen> {
   final String title = 'Display grid';
   double _sliderSize = 0.4;
