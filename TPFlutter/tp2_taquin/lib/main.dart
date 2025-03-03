@@ -1,7 +1,4 @@
-//import 'dart:ffi';
-
 import 'package:flutter/material.dart';
-import 'dart:math' as math;
 
 import 'package:tp2_taquin/src/library.dart';
 
