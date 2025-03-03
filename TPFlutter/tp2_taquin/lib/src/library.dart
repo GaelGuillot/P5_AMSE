@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tp2_taquin/src/screens/exo7_screen.dart';
 
 import 'exercise.dart';
 import 'screens/exo2_screen.dart';
@@ -40,4 +41,7 @@ final libraryInstance = Library()
   )
 ..addExercise(
 title: 'Exercice 6b', description: 'Slide tiles', widget: Exo6bScreen()
-);
+)
+..addExercise(
+  title: 'Exercice 7', description: 'Tile game', widget: Exo7Screen()
+  );
