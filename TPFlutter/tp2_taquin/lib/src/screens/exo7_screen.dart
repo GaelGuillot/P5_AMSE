@@ -13,7 +13,7 @@ class Exo7Screen extends StatefulWidget {
 
 class _Exo7ScreenState extends State<Exo7Screen> {
   final String title = 'Tile Puzzle';
-  double _sliderSize = 0.4;
+  int gridSize = 4;
   List<int> grid;
   bool hasStarted = false;
   int nbMoves = 0;
@@ -140,9 +140,9 @@ class _Exo7ScreenState extends State<Exo7Screen> {
     
   
 
-  int _calculateGridSize(double sliderValue) {
-    return (sliderValue * 10).toInt() + 1;
-  }
+  // int _calculateGridSize(double sliderValue) {
+  //   return (sliderValue * 10).toInt() + 1;
+  // }
 
   void _swapTiles(int index) {
     int blankIndex = grid.indexOf(grid.length - 1);
@@ -152,8 +152,7 @@ class _Exo7ScreenState extends State<Exo7Screen> {
     });
   }
 
-  bool _checkAdjacent(int index) {
-    int gridSize = _calculateGridSize(_sliderSize);
+  bool _checkAdjacent(int index) {;
     if (index + gridSize == grid.indexOf(grid.length - 1) ||
         index - gridSize == grid.indexOf(grid.length - 1) ||
         (index + 1) % gridSize != 0 && index + 1 == grid.indexOf(grid.length - 1) ||
@@ -184,8 +183,6 @@ class _Exo7ScreenState extends State<Exo7Screen> {
 
   @override
   Widget build(BuildContext context) {
-    int gridSize = _calculateGridSize(_sliderSize);
-
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(onPressed: () {
@@ -304,22 +301,22 @@ class _Exo7ScreenState extends State<Exo7Screen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         ElevatedButton(
-                          onPressed: !hasStarted? () {
+                          onPressed: !(hasStarted||gridSize==2)? () {
                             setState(() {
-                              if (_sliderSize > 0.2) {
-                                _sliderSize -= 0.1;
+                              if (gridSize > 2) {
+                                gridSize -= 1;
                               }
                             });
                           }:null,
                           style: ElevatedButton.styleFrom(
-                              backgroundColor: (hasStarted ? Color.fromARGB(255, 243, 243, 243) : Color.fromARGB(255, 255, 196, 252)),
+                              backgroundColor: (hasStarted||gridSize==2 ? Color.fromARGB(255, 243, 243, 243) : Color.fromARGB(255, 255, 196, 252)),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8.0),
                             ),
                           ),
                           child: Text(
                             '-',
-                            style: hasStarted ? TextStyle(color: Colors.grey) : TextStyle(color: Colors.black),
+                            style: hasStarted||gridSize==2 ? TextStyle(color: Colors.grey) : TextStyle(color: Colors.black),
                           ),
                         ),
                         SizedBox(width: 20),
@@ -333,7 +330,6 @@ class _Exo7ScreenState extends State<Exo7Screen> {
                                     hasStarted = false;
                                     _stopTimer();
                                   } else {
-                                    // _swapTiles(gridSize * gridSize - gridSize);
                                     shuffle(100, gridSize);
                                     nbMoves = 0;
                                     timer = 0;
@@ -373,22 +369,23 @@ class _Exo7ScreenState extends State<Exo7Screen> {
                         ),
                         SizedBox(width: 20),
                         ElevatedButton(
-                          onPressed: !hasStarted? () {
+                          onPressed: !(hasStarted||gridSize==10)? () {
                             setState(() {
-                              if (_sliderSize < 0.9) {
-                                _sliderSize += 0.1;
+                              if (gridSize < 10) {
+                                gridSize += 1;
                               }
+                              print((gridSize, gridSize));
                             });
                           }:null,
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: (hasStarted ? Color.fromARGB(255, 243, 243, 243) : Color.fromARGB(255, 255, 196, 252)),
+                            backgroundColor: (hasStarted||gridSize==10 ? Color.fromARGB(255, 243, 243, 243) : Color.fromARGB(255, 255, 196, 252)),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8.0),
                             ),
                           ),
                           child: Text(
                             '+',
-                            style: hasStarted ? TextStyle(color: Colors.grey) : TextStyle(color: Colors.black),
+                            style: hasStarted||gridSize==10 ? TextStyle(color: Colors.grey) : TextStyle(color: Colors.black),
                           ),
                         ),
                       ],
