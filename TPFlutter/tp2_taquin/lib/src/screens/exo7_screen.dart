@@ -104,13 +104,13 @@ class _Exo7ScreenState extends State<Exo7Screen> {
                       }
                   });
                   },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: (hasStarted? Color.fromARGB(255, 243, 243, 243):Color.fromARGB(255, 255, 196, 252)),
+                  ),
                   child: Text(
                     '-',
                     style: hasStarted?TextStyle(color: Colors.grey):TextStyle(color: Colors.black),
                     ),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: (hasStarted? Color.fromARGB(255, 243, 243, 243):Color.fromARGB(255, 255, 196, 252)),
-                  ),
                   ),
                   ElevatedButton(
                   onPressed: () {
@@ -125,10 +125,10 @@ class _Exo7ScreenState extends State<Exo7Screen> {
                       }
                     });
                   },
-                  child: Text(hasStarted?'Reset':'Start'),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: (hasStarted? Color.fromARGB(255, 255, 180, 180):Color.fromARGB(255, 201, 255, 196)),
                   ),
+                  child: Text(hasStarted?'Reset':'Start'),
                   ),
                   ElevatedButton(
                   onPressed: () {
@@ -140,12 +140,12 @@ class _Exo7ScreenState extends State<Exo7Screen> {
                     }
                     });
                   },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: (hasStarted? Color.fromARGB(255, 243, 243, 243):Color.fromARGB(255, 255, 196, 252)),
+                  ),
                   child: Text(
                     '+',
                     style: hasStarted?TextStyle(color: Colors.grey):TextStyle(color: Colors.black),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: (hasStarted? Color.fromARGB(255, 243, 243, 243):Color.fromARGB(255, 255, 196, 252)),
                   ),
                   ),
                 ],
