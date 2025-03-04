@@ -17,6 +17,7 @@ class _Exo7ScreenState extends State<Exo7Screen> {
   List<int> grid;
   bool hasStarted = false;
   int nbMoves = 0;
+  double nbShuffles = 50;
   int timer = 0;
   Timer? _timer;
   Queue movesHistory = new Queue(); 
@@ -136,13 +137,6 @@ class _Exo7ScreenState extends State<Exo7Screen> {
     }
   }
 
-      
-    
-  
-
-  // int _calculateGridSize(double sliderValue) {
-  //   return (sliderValue * 10).toInt() + 1;
-  // }
 
   void _swapTiles(int index) {
     int blankIndex = grid.indexOf(grid.length - 1);
@@ -237,7 +231,7 @@ class _Exo7ScreenState extends State<Exo7Screen> {
             Visibility(
               visible: hasStarted,
               child: Padding(
-                padding: const EdgeInsets.only(bottom: 70.0),
+                padding: const EdgeInsets.only(bottom: 100.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -291,9 +285,30 @@ class _Exo7ScreenState extends State<Exo7Screen> {
                 ),
               ),
             ),
+            Visibility(
+              visible: !hasStarted,
+              child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text('Shuffles: '),
+                Slider(
+                  value: nbShuffles,
+                  min: 10,
+                  max: 100,
+                  divisions: 4,
+                  label: '${(nbShuffles * gridSize).toInt()}',
+                  onChanged: (double value) {
+                    setState(() {
+                      nbShuffles = value;
+                    });
+                  },
+                ),
+              ],
+            ),
+            ),
             Center(
               child: Padding(
-                padding: const EdgeInsets.only(bottom: 50.0),
+                padding: const EdgeInsets.only(bottom: 20.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -330,7 +345,7 @@ class _Exo7ScreenState extends State<Exo7Screen> {
                                     hasStarted = false;
                                     _stopTimer();
                                   } else {
-                                    shuffle(100, gridSize);
+                                    shuffle((nbShuffles*gridSize).toInt(), gridSize);
                                     nbMoves = 0;
                                     timer = 0;
                                     movesHistory = Queue();
