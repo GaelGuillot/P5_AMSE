@@ -33,18 +33,112 @@ class _Exo7ScreenState extends State<Exo7Screen> {
     return true;
   }
 
-  void shuffle(int moves){
-    for (int i =0; i < moves;){
-      List<int> adjacent = [];
-      for (int j =0; j < grid.length;){
-        if (_checkAdjacent(j)){
-          adjacent.add(j);
+  void shuffle(int moves, int _gridSize){
+    int blank_index = Random().nextInt(_gridSize*_gridSize);
+    _swapTiles(blank_index);
+    for (int i=0; i < moves; i++){
+      if (blank_index == 0){
+        if (Random().nextInt(2) == 0){
+          _swapTiles(1);
+          blank_index = 1;
+        } else {
+          _swapTiles(_gridSize);
+          blank_index = _gridSize;
+        }
+      } else if (blank_index == _gridSize - 1){
+        if (Random().nextInt(2) == 0){
+          _swapTiles(2*_gridSize - 1);
+          blank_index = 2*_gridSize - 1;
+        } else {
+          _swapTiles(_gridSize - 2);
+          blank_index = _gridSize - 2;
+        }
+      } else if (blank_index == _gridSize*_gridSize - _gridSize){
+        if (Random().nextInt(2)==0){
+          _swapTiles(_gridSize*_gridSize - 2*_gridSize);
+          blank_index = _gridSize*_gridSize - 2*_gridSize;
+        } else {
+          _swapTiles(_gridSize*_gridSize - _gridSize + 1);
+          blank_index = _gridSize*_gridSize - _gridSize + 1;
+        }
+      } else if (blank_index == _gridSize*_gridSize - 1){
+        if (Random().nextInt(2)==0){
+          _swapTiles(_gridSize*_gridSize - 2);
+          blank_index = _gridSize*_gridSize - 2;
+        } else {
+          _swapTiles(_gridSize*_gridSize - _gridSize - 1);
+          blank_index = _gridSize*_gridSize - _gridSize - 1;
+        }
+      } else if (blank_index < _gridSize){
+        int rand = Random().nextInt(3);
+        if (rand == 0){
+          _swapTiles(blank_index + _gridSize);
+          blank_index = blank_index + _gridSize;
+        } else if (rand == 1){
+          _swapTiles(blank_index + 1);
+          blank_index = blank_index + 1;
+        } else {
+          _swapTiles(blank_index - 1);
+          blank_index = blank_index - 1;
+        }
+      } else if (blank_index % _gridSize == 0){
+        int rand = Random().nextInt(3);
+        if (rand == 0){
+          _swapTiles(blank_index + _gridSize);
+          blank_index = blank_index + _gridSize;
+        } else if (rand == 1){
+          _swapTiles(blank_index + 1);
+          blank_index = blank_index + 1;
+        } else {
+          _swapTiles(blank_index - _gridSize);
+          blank_index = blank_index - _gridSize;
+        }
+      } else if (blank_index % _gridSize == _gridSize - 1){
+        int rand = Random().nextInt(3);
+        if (rand == 0){
+          _swapTiles(blank_index + _gridSize);
+          blank_index = blank_index + _gridSize;
+        } else if (rand == 1){
+          _swapTiles(blank_index - 1);
+          blank_index = blank_index - 1;
+        } else {
+          _swapTiles(blank_index - _gridSize);
+          blank_index = blank_index - _gridSize;
+        }
+      } else if (blank_index > _gridSize*_gridSize - _gridSize){
+        int rand = Random().nextInt(3);
+        if (rand == 0){
+          _swapTiles(blank_index - _gridSize);
+          blank_index = blank_index - _gridSize;
+        } else if (rand == 1){
+          _swapTiles(blank_index + 1);
+          blank_index = blank_index + 1;
+        } else {
+          _swapTiles(blank_index - 1);
+          blank_index = blank_index - 1;
+        }
+      } else {
+        int rand = Random().nextInt(4);
+        if (rand == 0){
+          _swapTiles(blank_index - _gridSize);
+          blank_index = blank_index - _gridSize;
+        } else if (rand == 1){
+          _swapTiles(blank_index + _gridSize);
+          blank_index = blank_index + _gridSize;
+        } else if (rand == 2){
+          _swapTiles(blank_index + 1);
+          blank_index = blank_index + 1;
+        } else {
+          _swapTiles(blank_index - 1);
+          blank_index = blank_index - 1;
         }
       }
-      int n = Random().nextInt(adjacent.length);
-      _swapTiles(adjacent[n]);
     }
   }
+
+      
+    
+  
 
   int _calculateGridSize(double sliderValue) {
     return (sliderValue * 10).toInt() + 1;
@@ -239,9 +333,8 @@ class _Exo7ScreenState extends State<Exo7Screen> {
                                     hasStarted = false;
                                     _stopTimer();
                                   } else {
-                                    shuffle(100);
-                                    _swapTiles(gridSize * gridSize - gridSize);
-                                    
+                                    // _swapTiles(gridSize * gridSize - gridSize);
+                                    shuffle(100, gridSize);
                                     nbMoves = 0;
                                     timer = 0;
                                     movesHistory = Queue();
