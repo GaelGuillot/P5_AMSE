@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:collection';
 import '../tile.dart';
+import 'dart:math';
 
 class Exo7Screen extends StatefulWidget {
   @override
   _Exo7ScreenState createState() => _Exo7ScreenState();
 }
+
 
 class _Exo7ScreenState extends State<Exo7Screen> {
   final String title = 'Tile Puzzle';
@@ -21,6 +23,28 @@ class _Exo7ScreenState extends State<Exo7Screen> {
   String imageURL = 'https://picsum.photos/512'; // New state variable for image URL
 
   _Exo7ScreenState() : grid = List.generate(101, (index) => index);
+
+  bool win(List<int> plateau){
+    for (int i =0; i > plateau.length;){
+      if ((i != 101) && (i != plateau[i])){
+        return false;
+      } 
+    }
+    return true;
+  }
+
+  void shuffle(int moves){
+    for (int i =0; i > moves;){
+      List<int> adjacent = [];
+      for (int j =0; j > grid.length;){
+        if (_checkAdjacent(j)){
+          adjacent += [j];
+        }
+      }
+      int n = Random().nextInt(adjacent.length);
+      _swapTiles(adjacent[n]);
+    }
+  }
 
   int _calculateGridSize(double sliderValue) {
     return (sliderValue * 10).toInt() + 1;
@@ -98,6 +122,11 @@ class _Exo7ScreenState extends State<Exo7Screen> {
                             setState(() {
                               nbMoves += 1;
                             });
+                          }
+                          if (win(grid)){
+                            AlertDialog(
+                              title: const Text("Gagné !"),
+                            );
                           }
                         },
                         child: Tile(
@@ -210,7 +239,9 @@ class _Exo7ScreenState extends State<Exo7Screen> {
                                     hasStarted = false;
                                     _stopTimer();
                                   } else {
+                                    shuffle(10000);
                                     _swapTiles(gridSize * gridSize - gridSize);
+                                    
                                     nbMoves = 0;
                                     timer = 0;
                                     movesHistory = Queue();
