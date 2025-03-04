@@ -18,6 +18,7 @@ class _Exo7ScreenState extends State<Exo7Screen> {
   int timer = 0;
   Timer? _timer;
   Queue movesHistory = new Queue(); 
+  String imageURL = 'https://picsum.photos/512'; // New state variable for image URL
 
   _Exo7ScreenState() : grid = List.generate(101, (index) => index);
 
@@ -57,6 +58,12 @@ class _Exo7ScreenState extends State<Exo7Screen> {
     _timer?.cancel();
   }
 
+  void _reloadImage() {
+    setState(() {
+      imageURL = 'https://picsum.photos/512?random=${DateTime.now().millisecondsSinceEpoch}';
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     int gridSize = _calculateGridSize(_sliderSize);
@@ -94,7 +101,7 @@ class _Exo7ScreenState extends State<Exo7Screen> {
                           }
                         },
                         child: Tile(
-                          imageURL: 'https://picsum.photos/512',
+                          imageURL: imageURL, // Use the new image URL
                           alignment: Alignment(
                             -1 + 2 * (grid[index] % gridSize) / (gridSize - 1),
                             -1 + 2 * (grid[index] ~/ gridSize) / (gridSize - 1),
@@ -110,7 +117,7 @@ class _Exo7ScreenState extends State<Exo7Screen> {
             Visibility(
               visible: hasStarted,
               child: Padding(
-                padding: const EdgeInsets.only(bottom: 100.0),
+                padding: const EdgeInsets.only(bottom: 70.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -130,20 +137,18 @@ class _Exo7ScreenState extends State<Exo7Screen> {
                   SizedBox(width: 10),
 
                   ElevatedButton(
-                    onPressed: () {
+                    onPressed: movesHistory.isNotEmpty?() {
                     setState(() {
-                      if (movesHistory.isNotEmpty) {
-                        _swapTiles(movesHistory.removeLast());
-                        nbMoves -= 1;
-                      }
+                      _swapTiles(movesHistory.removeLast());
+                      nbMoves -= 1;
                     });
-                    },
+                    }:null,
                     style: ElevatedButton.styleFrom(
                     backgroundColor: movesHistory.isNotEmpty?Color.fromARGB(255, 241, 241, 241): Color.fromARGB(255, 213, 207, 214),
                     shape: CircleBorder(),
                     padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
                     ),
-                    child: Icon(Icons.settings_backup_restore_rounded,
+                    child: Icon(Icons.undo,
                     color: movesHistory.isNotEmpty?Colors.black:Colors.grey,
                     ),
                   ),
@@ -169,78 +174,100 @@ class _Exo7ScreenState extends State<Exo7Screen> {
             Center(
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 50.0),
-                child: Row(
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    ElevatedButton(
-                      onPressed: () {
-                        setState(() {
-                          if (!hasStarted) {
-                            if (_sliderSize > 0.2) {
-                              _sliderSize -= 0.1;
-                            }
-                          }
-                        });
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: (hasStarted ? Color.fromARGB(255, 243, 243, 243) : Color.fromARGB(255, 255, 196, 252)),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.0),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ElevatedButton(
+                          onPressed: !hasStarted? () {
+                            setState(() {
+                              if (_sliderSize > 0.2) {
+                                _sliderSize -= 0.1;
+                              }
+                            });
+                          }:null,
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: (hasStarted ? Color.fromARGB(255, 243, 243, 243) : Color.fromARGB(255, 255, 196, 252)),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                          ),
+                          child: Text(
+                            '-',
+                            style: hasStarted ? TextStyle(color: Colors.grey) : TextStyle(color: Colors.black),
+                          ),
                         ),
-                      ),
-                      child: Text(
-                        '-',
-                        style: hasStarted ? TextStyle(color: Colors.grey) : TextStyle(color: Colors.black),
-                      ),
-                    ),
-                    SizedBox(width: 20),
-                    ElevatedButton(
-                      onPressed: () {
-                        setState(() {
-                          if (hasStarted) {
-                            grid = List.generate(101, (index) => index);
-                            hasStarted = false;
-                            _stopTimer();
-                          } else {
-                            _swapTiles(gridSize * gridSize - gridSize);
-                            nbMoves = 0;
-                            timer = 0;
-                            movesHistory = Queue();
-                            hasStarted = true;
-                            _startTimer();
-                          }
-                        });
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: (hasStarted ? Color.fromARGB(255, 255, 180, 180) : Color.fromARGB(255, 201, 255, 196)),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.0),
+                        SizedBox(width: 20),
+                        Column(
+                          children: [
+                            ElevatedButton(
+                              onPressed: () {
+                                setState(() {
+                                  if (hasStarted) {
+                                    grid = List.generate(101, (index) => index);
+                                    hasStarted = false;
+                                    _stopTimer();
+                                  } else {
+                                    _swapTiles(gridSize * gridSize - gridSize);
+                                    nbMoves = 0;
+                                    timer = 0;
+                                    movesHistory = Queue();
+                                    hasStarted = true;
+                                    _startTimer();
+                                  }
+                                });
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: (hasStarted ? Color.fromARGB(255, 255, 148, 148) : Color.fromARGB(255, 201, 255, 196)),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+                              ),
+                              child: Text(hasStarted ? 'Reset' : 'Start',
+                              style: TextStyle(color: Colors.black),
+                              ),
+                            ),
+                            SizedBox(height: 10),
+                            ElevatedButton(
+                              onPressed: hasStarted?null:_reloadImage,
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: (hasStarted ? Color.fromARGB(255, 243, 243, 243) : Color.fromARGB(255, 255, 196, 252)),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 15.0),
+                              ),
+                              child: Text(
+                                'New image',
+                                style: TextStyle(color: hasStarted?Colors.grey:Colors.black),
+                              ),
+                            ),
+                          ],
                         ),
-                        padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
-                      ),
-                      child: Text(hasStarted ? 'Reset' : 'Start'),
-                    ),
-                    SizedBox(width: 20),
-                    ElevatedButton(
-                      onPressed: () {
-                        setState(() {
-                          if (!hasStarted) {
-                            if (_sliderSize < 0.9) {
-                              _sliderSize += 0.1;
-                            }
-                          }
-                        });
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: (hasStarted ? Color.fromARGB(255, 243, 243, 243) : Color.fromARGB(255, 255, 196, 252)),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.0),
+                        SizedBox(width: 20),
+                        ElevatedButton(
+                          onPressed: !hasStarted? () {
+                            setState(() {
+                              if (_sliderSize < 0.9) {
+                                _sliderSize += 0.1;
+                              }
+                            });
+                          }:null,
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: (hasStarted ? Color.fromARGB(255, 243, 243, 243) : Color.fromARGB(255, 255, 196, 252)),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                          ),
+                          child: Text(
+                            '+',
+                            style: hasStarted ? TextStyle(color: Colors.grey) : TextStyle(color: Colors.black),
+                          ),
                         ),
-                      ),
-                      child: Text(
-                        '+',
-                        style: hasStarted ? TextStyle(color: Colors.grey) : TextStyle(color: Colors.black),
-                      ),
+                      ],
                     ),
                   ],
                 ),
