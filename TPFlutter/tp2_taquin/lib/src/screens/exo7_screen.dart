@@ -34,11 +34,11 @@ class _Exo7ScreenState extends State<Exo7Screen> {
   }
 
   void shuffle(int moves){
-    for (int i =0; i > moves;){
+    for (int i =0; i < moves;){
       List<int> adjacent = [];
-      for (int j =0; j > grid.length;){
+      for (int j =0; j < grid.length;){
         if (_checkAdjacent(j)){
-          adjacent += [j];
+          adjacent.add(j);
         }
       }
       int n = Random().nextInt(adjacent.length);
@@ -239,7 +239,7 @@ class _Exo7ScreenState extends State<Exo7Screen> {
                                     hasStarted = false;
                                     _stopTimer();
                                   } else {
-                                    shuffle(10000);
+                                    shuffle(100);
                                     _swapTiles(gridSize * gridSize - gridSize);
                                     
                                     nbMoves = 0;
