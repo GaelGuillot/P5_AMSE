@@ -25,18 +25,16 @@ class _Exo7ScreenState extends State<Exo7Screen> {
 
   _Exo7ScreenState() : grid = List.generate(101, (index) => index);
 
-  bool win(List<int> plateau){
-    for (int i =0; i > plateau.length;){
-      if ((i != 101) && (i != plateau[i])){
-        return false;
-      } 
-    }
-    return true;
-  }
+  bool win(){
+   for (int i = 0; i < grid.length-1; i++){
+     if ((grid[i] != grid.length-1) && (i != grid[i])){
+       return false;
+     }
+   }
+   return true;
+ }
 
-  void shuffle(int moves, int _gridSize){
-    int blank_index = Random().nextInt(_gridSize*_gridSize);
-    _swapTiles(blank_index);
+  void shuffle(int moves, int _gridSize, int blank_index){
     for (int i=0; i < moves; i++){
       if (blank_index == 0){
         if (Random().nextInt(2) == 0){
@@ -201,7 +199,7 @@ class _Exo7ScreenState extends State<Exo7Screen> {
                   children: [
                     for (int index = 0; index < gridSize * gridSize; index++)
                       GestureDetector(
-                        onTap: () {
+                        onTap: hasStarted?() {
                           if (_checkAdjacent(index)) {
                             movesHistory.add(grid.indexOf(grid.length - 1));
                             _swapTiles(index);
@@ -209,12 +207,27 @@ class _Exo7ScreenState extends State<Exo7Screen> {
                               nbMoves += 1;
                             });
                           }
-                          if (win(grid)){
-                            AlertDialog(
-                              title: const Text("Gagné !"),
-                            );
-                          }
-                        },
+                          if (win()){
+                            _stopTimer();
+                            showDialog(
+                             context: context,
+                             builder: (BuildContext context) {
+                               return AlertDialog(
+                                 title: const Text("You win!"),
+                                 content: Text('You solved this puzzle in${(timer ~/ 60 == 0)?'':' ${(timer ~/ 60).toString()} minute${timer ~/ 60<=1?'':'s'} and'} ${(timer % 60).toString()} second${timer % 60 == 1?'':'s'}, using $nbMoves move${nbMoves<=1?'':'s'}!'),
+                                 actions: [
+                                   TextButton(
+                                     onPressed: () {
+                                       Navigator.of(context).pop(); // Close the dialog
+                                     },
+                                     child: const Text("OK"),
+                                   ),
+                                 ],
+                               );
+                             },
+                           );
+                         }
+                        }:null,
                         child: Tile(
                           imageURL: imageURL, 
                           alignment: Alignment(
@@ -346,7 +359,11 @@ class _Exo7ScreenState extends State<Exo7Screen> {
                                     hasStarted = false;
                                     _stopTimer();
                                   } else {
-                                    shuffle((nbShuffles*gridSize).toInt(), gridSize);
+                                    int blank_index = Random().nextInt(gridSize*gridSize);
+                                    _swapTiles(blank_index);
+                                    while (win()){
+                                      shuffle((nbShuffles*gridSize).toInt(), gridSize, blank_index);
+                                    };
                                     nbMoves = 0;
                                     timer = 0;
                                     movesHistory = Queue();
