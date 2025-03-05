@@ -6,7 +6,7 @@ Tile tile = new Tile(
     imageURL: 'https://picsum.photos/512', alignment: Alignment(0, 0));
 
 class Exo4Screen extends StatelessWidget {
-  final String title = 'Display a Tile as a Cropped Image';
+  final String title = 'Display a Tile as Cropped Image';
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class Exo4Screen extends StatelessWidget {
         }, 
         icon: Icon(Icons.arrow_back)),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text('Display a Tile as a Cropped Image'),
+        title: Text('Cropped Image'),
       ),
       body: Center(
           child: Column(children: [
