@@ -192,6 +192,7 @@ class _Exo7ScreenState extends State<Exo7Screen> {
             Expanded(
               child: Container(
                 height: 500,
+                width: 500,
                 child: GridView.count(
                   padding: const EdgeInsets.all(10),
                   crossAxisCount: gridSize,
