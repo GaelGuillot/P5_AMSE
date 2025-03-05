@@ -18,7 +18,7 @@ git clone https://github.com/GaelGuillot/P5_AMSE.git
 Then, navigating to the correct repository
 
 ```bash
-cd P5_AMSE/TPFlutter/tp1_music_database
+cd P5_AMSE/TPFlutter/tp2_taquin
 ```
 
 Grabbing the required flutter pub files
