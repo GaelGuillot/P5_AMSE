@@ -51,7 +51,7 @@ class Exo6Screen extends StatefulWidget {
 
 class _Exo6ScreenState extends State<Exo6Screen> {
   List<Widget> tiles =
-      List<Widget>.generate(8, (index) => TileWidget(Tile.randomColor()));
+      List<Widget>.generate(2, (index) => TileWidget(Tile.randomColor()));
 
   @override
   Widget build(BuildContext context) {
