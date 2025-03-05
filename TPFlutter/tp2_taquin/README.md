@@ -1,16 +1,13 @@
 # tp2_taquin
 
-A new Flutter project.
+To install this project, go into any directory, open a terminal and run the following command :
 
-## Getting Started
+git clone https://github.com/GaelGuillot/P5_AMSE
 
-This project is a starting point for a Flutter application.
+You may need to run the following command to update your packages :
 
-A few resources to get you started if this is your first Flutter project:
+flutter pub get
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+You can then launch the project by running the following command :
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+flutter run
