@@ -21,7 +21,7 @@ class _Exo7ScreenState extends State<Exo7Screen> {
   int timer = 0;
   Timer? _timer;
   Queue movesHistory = new Queue(); 
-  String imageURL = 'https://picsum.photos/512'; // New state variable for image URL
+  String imageURL = 'https://picsum.photos/512'; 
 
   _Exo7ScreenState() : grid = List.generate(101, (index) => index);
 
@@ -216,7 +216,7 @@ class _Exo7ScreenState extends State<Exo7Screen> {
                           }
                         },
                         child: Tile(
-                          imageURL: imageURL, // Use the new image URL
+                          imageURL: imageURL, 
                           alignment: Alignment(
                             -1 + 2 * (grid[index] % gridSize) / (gridSize - 1),
                             -1 + 2 * (grid[index] ~/ gridSize) / (gridSize - 1),

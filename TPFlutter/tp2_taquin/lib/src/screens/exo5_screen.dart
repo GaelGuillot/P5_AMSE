@@ -17,7 +17,6 @@ class _Exo5ScreenState extends State<Exo5Screen> {
   @override
   Widget build(BuildContext context) {
     int gridSize = _calculateGridSize(_sliderSize);
-    // double cellSize = 512 / gridSize;
 
     return Scaffold(
       appBar: AppBar(
