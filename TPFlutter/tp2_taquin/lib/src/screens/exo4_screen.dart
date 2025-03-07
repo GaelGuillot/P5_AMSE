@@ -3,7 +3,8 @@ import '../tile.dart';
 
 
 Tile tile = new Tile(
-    imageURL: 'https://picsum.photos/512', alignment: Alignment(0, 0));
+  id: 0,
+  imageURL: 'https://picsum.photos/512', alignment: Alignment(0, 0));
 
 class Exo4Screen extends StatelessWidget {
   final String title = 'Display a Tile as Cropped Image';

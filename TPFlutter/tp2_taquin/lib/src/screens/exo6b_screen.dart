@@ -75,6 +75,7 @@ class _Exo6bScreenState extends State<Exo6bScreen> {
                             }
                           },
                           child: Tile(
+                            id: grid[index],
                             imageURL: 'https://picsum.photos/512',
                             alignment: Alignment(
                               -1 + 2 * (grid[index] % gridSize) / (gridSize - 1),

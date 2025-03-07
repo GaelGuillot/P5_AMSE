@@ -42,6 +42,7 @@ class _Exo5ScreenState extends State<Exo5Screen> {
                   children: [
                     for (int index = 0; index < gridSize * gridSize; index++)
                     Tile(
+                      id: index,
                       imageURL: 'https://picsum.photos/512', 
                       alignment: Alignment(
                         -1 + 2 * (index % gridSize) / (gridSize - 1),
